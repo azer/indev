@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-process.env.DEBUG = (process.env.DEBUG || '') + ',ondev:*';
+!/indev/.test(process.env.DEBUG) &&
+  ( process.env.DEBUG = (process.env.DEBUG || '') + ',indev:*' );
 
 var opt     = require('optimist'),
 

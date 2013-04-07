@@ -11,7 +11,7 @@ var comp   = require('comp'),
 module.exports = start;
 
 function start(argv){
-  process.stdout.write('\u001B[2J\u001B[0;0f');
+//  process.stdout.write('\u001B[2J\u001B[0;0f');
 
   tasks.specified = argv._;
   tasks.specified.length == 0 && tasks.specified.push('all');

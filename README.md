@@ -14,11 +14,11 @@ ShellJS and a file watcher injected by default. No need to require anything to s
 ```coffee
 all 'run', 'public/js', 'public/css'
 
-task 'hello' ->
-    write "/tmp/now" "Hello #{process.env.USER}!"
+task 'hello', ->
+    write "/tmp/now", "Hello #{process.env.USER}!"
     debug pwd() # printss the current directory into console
 
-task 'run', './app.js', './lib' -> # "run" is the task name. Remaining parameters are filenames to watch.
+task 'run', './app.js', './lib', -> # "run" is the task name. Remaining parameters are filenames to watch.
     exec 'node app'
 
 # below line defines a new task named "public/js", watches changes on "./javascripts"
