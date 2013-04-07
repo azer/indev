@@ -40,7 +40,7 @@ task 'run', './app.js', './lib', -> # "run" is the task name. Remaining paramete
     exec 'node app'
 
 # below line defines a new task named "public/js", watches changes on "./javascripts"
-target 'public/js', 'javascripts' -> # `target` is just an alias for `task`.
+target 'public/js', 'javascripts', -> # `target` is just an alias for `task`.
     cd 'frontend'
     exec 'browserify javascripts/main.js -o public/bundle.js'
 
