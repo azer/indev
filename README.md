@@ -13,6 +13,8 @@ You can code Devfiles in **either JavaScript or CoffeeScript**.
 
 ShellJS injected by default. No need to require anything to start.
 
+### Defining Tasks
+
 ```coffee
 target 'destination', 'watching-files/lib', 'watching-files/src', ->
     cp 'foo', 'bar'
@@ -22,6 +24,8 @@ target 'destination', 'watching-files/lib', 'watching-files/src', ->
 
 The above code is a simple task definition. `target` is actually an alias for `task` function, and it lets you
 create new tasks by specifying a name, files to observe and a function that achieves the task.
+
+### Example
 
 Let's look at a real world example;
 
@@ -45,6 +49,8 @@ target 'public/css', 'styles', -> # same as `public/js`, it watches 'styles' dir
     exec 'stylus styles -o public/css'
 ```
 
+### Running `indev`
+
 Once you have a `Devfile` in your project, run `indev` command;
 
 ```bash
@@ -60,3 +66,11 @@ $ indev public/js run
 This will be calling only `public/js` and `run` tasks.
 
 See `examples` and `indev --help` for more information.
+
+### Debugging
+
+Enabling all logs will help you understand what's going on behind of the scene.
+
+```bash
+$ DEBUG=indev:* indev
+```
