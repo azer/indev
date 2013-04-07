@@ -11,7 +11,7 @@ $ npm install -g indev
 Create a new "Devfile" *(or Devfile.js, Devfile.coffee)* in your project directory.
 You can code Devfiles in **either JavaScript or CoffeeScript**.
 
-ShellJS and a file watcher injected by default. No need to require anything to start.
+ShellJS injected by default. No need to require anything to start.
 
 ```coffee
 target 'destination', 'watching-files/lib', 'watching-files/src', ->
