@@ -15,7 +15,7 @@ ShellJS and a file watcher injected by default. No need to require anything to s
 
 ```coffee
 target 'destination', 'watching-files/lib', 'watching-files/src', ->
-    cp 'foo' 'bar'
+    cp 'foo', 'bar'
     mkdir 'foobar'
     exec 'node app'
 ```
