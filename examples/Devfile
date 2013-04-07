@@ -1,0 +1,24 @@
+all 'clean', 'dist/foo', 'dist/bar'
+
+task 'clean', ->
+    rm '-rf', '/tmp/test'
+
+    mkdir '/tmp/test'
+    cd '/tmp/test'
+
+    mkdir 'src'
+    mkdir 'dist'
+
+    write 'src/foo', 'this is foo'
+    write 'src/bar', 'and this is bar'
+
+    debug pwd()
+
+target 'dist/foo', '/tmp/test/src/foo', ->
+    debug pwd()
+    cd '/tmp/test/src'
+    cp '-f', 'foo', '../dist/foo'
+
+target 'dist/bar', '/tmp/test/src/bar', ->
+    cd '/tmp/test/src'
+    cp '-f', 'bar', '../dist/bar'

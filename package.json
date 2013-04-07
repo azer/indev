@@ -1,0 +1,25 @@
+{
+  "name": "indev",
+  "version": "0.0.0",
+  "description": "simple & powerful replacement for Make & Grunt. Aims to let you write and read less, do more.",
+  "main": "index.js",
+  "bin": {
+    "indev": "./bin/indev"
+  },
+  "dependencies": {
+    "require-like": "*",
+    "coffee-script": "*",
+    "optimist": "*",
+    "iter": "0.0.0",
+    "comp": "0.0.1",
+    "shelljs": "~0.1.2",
+    "debug": "~0.7.2",
+    "new-partial": "0.0.1"
+  },
+  "repository": {
+    "url": "git@github.com:azer/indev.git",
+    "type": "git"
+  },
+  "author": "azer",
+  "license": "BSD"
+}

@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+process.env.DEBUG = (process.env.DEBUG || '') + ',ondev:*';
+
+var opt     = require('optimist'),
+
+    help    = require('../lib/help'),
+    version = require('../lib/version'),
+    ondev   = require('../');
+
+var argv = opt
+      .options('file', { alias: 'f' })
+      .options('version', { alias: 'v' })
+      .options('help', { alias: 'h' })
+      .argv;
+
+if(argv.help) help();
+if(argv.version) version();
+
+ondev(argv);
