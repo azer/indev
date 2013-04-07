@@ -1,4 +1,4 @@
-Simple & powerful replacement for Make & Grunt. Aims to let you write and read less, do more.
+Simple & powerful replacement for Make & GruntJS. Aims to let you write and read less, do more.
 
 ```bash
 $ npm install -g indev
