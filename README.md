@@ -13,10 +13,10 @@ task 'run', 'server.js', ->
 
 ## Usage
 
-Create a new "Devfile" *(or Devfile.js, Devfile.coffee)* in your project directory.
-You can code Devfiles in **either JavaScript or CoffeeScript**.
+Create a new [Devfile](https://github.com/azer/indev/blob/master/lib/look-up.js) in your project directory,
+and code your tasks in either *JavaScript* or *CoffeeScript*.
 
-ShellJS injected by default. No need to require anything to start.
+[ShellJS](https://github.com/arturadib/shelljs) is [available in Devfiles](https://github.com/azer/indev/blob/master/lib/context.js#L30) globally. No need to require anything to start.
 
 ### Defining Tasks
 
@@ -44,9 +44,17 @@ It'll be running your server and restarting it when you change server.js:
 $ indev run
 ```
 
-### Example Devfile
+### Defining `all`
 
-Let's look at a real world example;
+```coffee
+all 'foo', 'bar'
+
+task 'foo', ->
+target 'bar', ->
+task 'qux', ->
+```
+
+## Full Example
 
 ```coffee
 all 'run', 'public/js', 'public/css'
@@ -68,7 +76,7 @@ target 'public/css', 'styles', -> # same as `public/js`, it watches 'styles' dir
     exec 'stylus styles -o public/css'
 ```
 
-### Running `indev`
+## Running `indev`
 
 Once you have a `Devfile` in your project, run `indev` command;
 
@@ -76,7 +84,7 @@ Once you have a `Devfile` in your project, run `indev` command;
 $ indev
 ```
 
-To run only specific commands:
+To [run only specific tasks](https://github.com/azer/indev/blob/master/index.js#L16):
 
 ```bash
 $ indev public/js run
