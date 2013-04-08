@@ -4,6 +4,11 @@ Simple & powerful replacement for Make & GruntJS. Aims to let you write and read
 $ npm install -g indev
 ```
 
+```coffee
+task 'run', 'server.js', ->
+    exec "node server"
+```
+
 ![](https://dl.dropbox.com/s/imo9jsn9bj0p70a/indev.png?token_hash=AAHJaVO7QTSQxWWqLaNsBwaJfwU2pf8WlF7COJ9v5FNTaw)
 
 ## Usage
