@@ -23,9 +23,23 @@ target 'destination', 'watching-files/lib', 'watching-files/src', ->
 ```
 
 The above code is a simple task definition. `target` is actually an alias for `task` function, and it lets you
-create new tasks by specifying a name, files to observe and a function that achieves the task.
+create new tasks by specifying a name, files to observe and a function that will be called once at start, and whenever
+`watching-files/lib` or `watching-files/src` has a change.
 
-### Example
+The simplest usage could be;
+
+```coffee
+task 'run', 'server.js', ->
+    exec "node server"
+```
+
+It'll be running your server and restarting it when you change server.js:
+
+```bash
+$ indev run
+```
+
+### Example Devfile
 
 Let's look at a real world example;
 
