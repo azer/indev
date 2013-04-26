@@ -1,3 +1,5 @@
+inspect = require('util').inspect
+
 all 'clean', 'dist/foo', 'dist/bar'
 
 task 'clean', ->
@@ -13,6 +15,10 @@ task 'clean', ->
     write 'src/bar', 'and this is bar'
 
     debug pwd()
+
+target 'dist/all', '/tmp/test/**/*', (files) ->
+    debug 'hello'
+    debug inspect(files)
 
 target 'dist/foo', '/tmp/test/src/foo', ->
     debug pwd()

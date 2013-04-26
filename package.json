@@ -14,7 +14,9 @@
     "comp": "0.0.1",
     "shelljs": "~0.1.2",
     "debug": "~0.7.2",
-    "new-partial": "0.0.1"
+    "new-partial": "0.0.1",
+    "flatten-array": "0.0.1",
+    "glob": "~3.2.1"
   },
   "repository": {
     "url": "git@github.com:azer/indev.git",
