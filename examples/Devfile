@@ -16,9 +16,9 @@ task 'clean', ->
 
     debug pwd()
 
-target 'dist/all', '/tmp/test/**/*', (files) ->
-    debug 'hello'
-    debug inspect(files)
+task 'watch', '/tmp/test/**/*', (files) ->
+    files.forEach (f) ->
+        debug "#{f} was changed"
 
 target 'dist/foo', '/tmp/test/src/foo', ->
     debug pwd()

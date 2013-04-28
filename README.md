@@ -1,102 +1,116 @@
-Minimalistic replacement for Makefiles. Aims to let you write and read less, do more.
+Minimalistic replacement for Makefiles.
+
+```coffee
+task 'run', 'server.js', ->
+    exec "node server"
+```
+
+![](https://dl.dropbox.com/s/imo9jsn9bj0p70a/indev.png)
+
+## Install
 
 ```bash
 $ npm install -g indev
 ```
 
-```coffee
-task 'run', 'server.js', ->
-    exec "node server"
-```
-
-![](https://dl.dropbox.com/s/imo9jsn9bj0p70a/indev.png?token_hash=AAHJaVO7QTSQxWWqLaNsBwaJfwU2pf8WlF7COJ9v5FNTaw)
-
 ## Usage
 
-Create a new [Devfile](https://github.com/azer/indev/blob/master/lib/look-up.js) in your project directory,
-and code your tasks in either *JavaScript* or *CoffeeScript*.
+Create a new [Devfile](https://github.com/azer/indev/blob/master/lib/look-up.js),
+and code your tasks in *JavaScript* or *CoffeeScript*.
 
-[ShellJS](https://github.com/arturadib/shelljs) is [available in Devfiles](https://github.com/azer/indev/blob/master/lib/context.js#L30) globally. No need to require anything to start.
-
-### Defining Tasks
+## Defining A Task
 
 ```coffee
-target 'destination', 'watching-files/lib', 'watching-files/src', ->
-    cp 'foo', 'bar'
-    mkdir 'foobar'
+task 'run', ->
     exec 'node app'
 ```
 
-The above code is a simple task definition. `target` is actually an alias for `task` function, and it lets you
-create new tasks by specifying a name, files to observe and a function that will be called once at start, and whenever
-`watching-files/lib` or `watching-files/src` has a change.
+Or
 
-The simplest usage could be;
-
-```coffee
-task 'run', 'server.js', ->
-    exec "node server"
+```js
+task('run', function(){
+    exec('node app');
+});
 ```
 
-It'll be running your server and restarting it when you change server.js:
+To run:
 
 ```bash
-$ indev run
+$ indev app
 ```
 
-### Defining `all`
+## Shell Commands
+
+[ShellJS](https://github.com/arturadib/shelljs) is [available in Devfiles](https://github.com/azer/indev/blob/master/lib/context.js#L30) globally.
 
 ```coffee
-all 'foo', 'bar'
+task 'hello/world', ->
+    mkdir '-p', 'hello/world'
+    write 'hello/world/README.txt', 'Hello World!'
 
-task 'foo', ->
-target 'bar', ->
-task 'qux', ->
+    cd 'lib'
+    cp 'stuff/*', '../hello/world'
+
+    ls './', (file) ->
+        debug "Copied lib/#{file} to hello/world/."
 ```
 
-## Full Example
+## Watching Files
+
+Following task will be watching run.js and lib/* and restarting the task on any change:
+
+```coffee
+task 'start', 'lib', 'run.js', ->
+    exec 'node app'
+```
+
+The first parameter of the given callback will have the list of changed files;
+
+```coffee
+task 'watch', 'lib/**/*.js', 'run.js', (files) ->
+    files.forEach (file) ->
+        debug "#{file} updated."
+```
+
+## Defining Targets
+
+`target` is an alias that would make your tasks look more meaningful.
+
+```coffee
+target 'dist.js', 'index.js', 'lib', ->
+    exec 'onejs index -o dist.js'
+```
+
+## Defining Multiple Tasks
 
 ```coffee
 all 'run', 'public/js', 'public/css'
 
-task 'hello', ->
-    write "/tmp/now", "Hello #{process.env.USER}!"
-    debug pwd() # printss the current directory into console
-
-task 'run', './app.js', './lib', -> # "run" is the task name. Remaining parameters are filenames to watch.
+task 'run', './app.js', './lib', ->
     exec 'node app'
 
-# below line defines a new task named "public/js", watches changes on "./javascripts"
-target 'public/js', 'javascripts', -> # `target` is just an alias for `task`.
+target 'public/js', 'javascripts', ->
     cd 'frontend'
     exec 'browserify javascripts/main.js -o public/bundle.js'
 
-target 'public/css', 'styles', -> # same as `public/js`, it watches 'styles' directory and outputs to public/css.
+target 'public/css', 'styles', ->
     cd 'frontend'
     exec 'stylus styles -o public/css'
 ```
 
-## Running `indev`
-
-Once you have a `Devfile` in your project, run `indev` command;
+To run all tasks:
 
 ```bash
 $ indev
 ```
 
-To [run only specific tasks](https://github.com/azer/indev/blob/master/index.js#L16):
+To run specific tasks;
 
 ```bash
-$ indev public/js run
+$ indev public/js public/css
 ```
 
-This will be calling only `public/js` and `run` tasks.
-
-See `examples` and `indev --help` for more information.
-
 ### Debugging
-
-Enabling all logs will help you understand what's going on behind of the scene.
 
 ```bash
 $ DEBUG=indev:* indev
