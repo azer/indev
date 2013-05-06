@@ -14,3 +14,11 @@ target 'public/js', 'javascripts', ->
 target 'public/css', 'styles', ->
     cd 'frontend'
     exec 'stylus styles -o public/css'
+
+task 'foo', ->
+  debug 'foo'
+
+task 'bar', ->
+  debug 'bar'
+
+alias 'foobar', 'foo', 'bar'
