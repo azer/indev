@@ -36,7 +36,7 @@ task('run', function(){
 To run:
 
 ```bash
-$ indev app
+$ indev run
 ```
 
 ## Shell Commands
