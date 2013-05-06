@@ -1,12 +1,12 @@
 Minimalistic replacement for Makefiles.
 
 ```coffee
+task 'run', 'server.js', ->
+    exec "node server"
+    
 task 'clean', ->
     cd 'logs'
     rm '-rf', '*.txt'
-    
-task 'run', 'server.js', ->
-    exec "node server"
 ```
 
 ![](https://dl.dropbox.com/s/imo9jsn9bj0p70a/indev.png)
