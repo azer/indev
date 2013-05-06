@@ -110,6 +110,16 @@ To run specific tasks;
 $ indev public/js public/css
 ```
 
+Define aliases to type less:
+
+```coffee
+alias 'assets', 'public/js', 'public/css'
+```
+
+```bash
+$ indev assets
+```
+
 ### Debugging
 
 ```bash
