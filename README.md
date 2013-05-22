@@ -61,7 +61,8 @@ task 'hello/world', ->
 
 ## Watching Files
 
-Following task will be watching run.js and lib/* and restarting the task on any change:
+The parameters after a task name considered as files to watch. 
+Following task will watch `run.js` and `lib/` and restart the task on any change:
 
 ```coffee
 task 'start', 'lib', 'run.js', ->
