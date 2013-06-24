@@ -1,7 +1,7 @@
 Minimalistic replacement for Makefiles.
 
 ```coffee
-task 'run' ->
+task 'run', ->
     exec "node server"
     
 task 'clean', ->
