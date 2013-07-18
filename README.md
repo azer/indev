@@ -6,7 +6,9 @@ task 'run', ->
     
 task 'clean', ->
     cd 'logs'
-    rm '-rf', '*.txt'
+    rm '-rf', '*.txt',
+    
+task 'server', bin 'serve -p 3001'
 ```
 
 ![](https://dl.dropbox.com/s/imo9jsn9bj0p70a/indev.png)
