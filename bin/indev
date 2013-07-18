@@ -4,10 +4,7 @@
   ( process.env.DEBUG = (process.env.DEBUG || '') + ',indev:run,indev:read,indev:exec,indev:tasks,devfile:*' );
 
 var opt     = require('optimist'),
-
-    help    = require('../lib/help'),
-    version = require('../lib/version'),
-    ondev   = require('../');
+    indev   = require('../');
 
 var argv = opt
       .options('file', { alias: 'f' })
@@ -15,7 +12,7 @@ var argv = opt
       .options('help', { alias: 'h' })
       .argv;
 
-if(argv.help) help();
-if(argv.version) version();
+if(argv.help) require('show-help');
+if(argv.version) require('show-version');
 
-ondev(argv);
+indev(argv);

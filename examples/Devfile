@@ -1,4 +1,5 @@
 inspect = require('util').inspect
+server = bin 'serve'
 
 all 'clean', 'dist/foo', 'dist/bar'
 

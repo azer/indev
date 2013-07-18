@@ -1,6 +1,6 @@
 {
   "name": "indev",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "simple & powerful replacement for Make & Grunt. Aims to let you write and read less, do more.",
   "main": "index.js",
   "bin": {
@@ -16,7 +16,9 @@
     "debug": "~0.7.2",
     "new-partial": "0.0.1",
     "flatten-array": "0.0.1",
-    "glob": "~3.2.1"
+    "glob": "~3.2.1",
+    "show-help": "0.0.0",
+    "show-version": "0.0.0"
   },
   "repository": {
     "url": "git@github.com:azer/indev.git",
