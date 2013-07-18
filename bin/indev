@@ -1,18 +1,22 @@
 #!/usr/bin/env node
 
-!/indev/.test(process.env.DEBUG) &&
-  ( process.env.DEBUG = (process.env.DEBUG || '') + ',indev:run,indev:read,indev:exec,indev:tasks,devfile:*' );
-
-var opt     = require('optimist'),
-    indev   = require('../');
+var opt = require('optimist');
 
 var argv = opt
+      .options('list', { alias: 'l' })
       .options('file', { alias: 'f' })
       .options('version', { alias: 'v' })
       .options('help', { alias: 'h' })
       .argv;
 
+if ( !argv.list && !/indev/.test(process.env.DEBUG) ) {
+  process.env.DEBUG = (process.env.DEBUG || '') + ',indev:run,indev:read,indev:exec,indev:tasks,devfile:*';
+}
+
+var indev = require('../');
+
 if(argv.help) require('show-help');
 if(argv.version) require('show-version');
+if(argv.list) require('../lib/list');
 
 indev(argv);

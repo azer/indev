@@ -5,6 +5,7 @@
 
     OPTIONS
 
+        -l    --list       List all available tasks.
         -f    --file       Specify a Devfile.
         -v    --version    Show version and exit
         -h    --help       Show help and exit
