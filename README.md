@@ -86,6 +86,24 @@ target 'dist.js', 'index.js', 'lib', ->
     exec 'onejs index -o dist.js'
 ```
 
+## Calling NodeJS Commands
+
+indev provides a shortcut to define NodeJS commands;
+
+```coffee
+browserify = bin "node-browserify/cli.js" # resolves as node_modules/node-browserify/bin/browserify
+stylus = bin "stylus" # node_modules/stylus/bin/stylus
+
+target "dist.js", ->
+    browserify "index.js -o dist.js"
+    
+target "style.css", ->
+    stylus "style.styl"
+    
+task "server", -> bin "serve -p 9090"
+
+```
+
 ## Defining Multiple Tasks
 
 ```coffee
