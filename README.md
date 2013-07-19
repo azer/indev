@@ -1,12 +1,12 @@
-Minimalistic replacement for Makefiles.
+Minimalistic task manager.
 
 ```coffee
 task 'run', ->
-    exec "node server"
+    exec "node index"
     
 task 'clean', ->
     cd 'logs'
-    rm '-rf', '*.txt',
+    rm '-rf', '*.txt'
     
 task 'server', bin 'serve -p 3001'
 ```
