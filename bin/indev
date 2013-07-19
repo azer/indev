@@ -9,7 +9,7 @@ var argv = opt
       .options('help', { alias: 'h' })
       .argv;
 
-if ( !argv.list && !/indev/.test(process.env.DEBUG) ) {
+if ( argv._.length && !argv.list && !/indev/.test(process.env.DEBUG) ) {
   process.env.DEBUG = (process.env.DEBUG || '') + ',indev:run,indev:read,indev:exec,indev:tasks,devfile:*';
 }
 
