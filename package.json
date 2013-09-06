@@ -19,7 +19,8 @@
     "glob": "~3.2.1",
     "show-help": "0.0.0",
     "show-version": "0.0.0",
-    "styled": "0.0.1"
+    "styled": "0.0.1",
+    "q": "0.9.7"
   },
   "repository": {
     "url": "git@github.com:azer/indev.git",
