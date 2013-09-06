@@ -91,10 +91,10 @@ target 'dist.js', 'index.js', 'lib', ->
 ## Calling Commands
 
 ```coffee
-uglify = cmd "uglify-js"
+serve = cmd "python -m SimpleHTTPServer"
 
-target "foo.min.js", "foo.js", ->
-  uglify "foo.js -o foo.min.js"
+task "serve", ->
+  serve()
 ```
 
 ### From node_modules/bin
