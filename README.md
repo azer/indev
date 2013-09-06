@@ -88,9 +88,16 @@ target 'dist.js', 'index.js', 'lib', ->
     exec 'onejs index -o dist.js'
 ```
 
-## Calling NodeJS Commands
+## Calling Commands
 
-indev provides a shortcut to define NodeJS commands;
+```coffee
+uglify = cmd "uglify-js"
+
+target "foo.min.js", "foo.js", ->
+  uglify "foo.js -o foo.min.js"
+```
+
+### From node_modules/bin
 
 ```coffee
 browserify = bin "node-browserify/cli.js" # resolves as node_modules/node-browserify/bin/browserify
