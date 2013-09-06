@@ -1,6 +1,6 @@
 {
   "name": "indev",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "simple & powerful replacement for Make & Grunt. Aims to let you write and read less, do more.",
   "main": "index.js",
   "bin": {
