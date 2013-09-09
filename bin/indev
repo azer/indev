@@ -10,7 +10,7 @@ var argv = opt
       .argv;
 
 if ( !argv.list && !/indev/.test(process.env.DEBUG) ) {
-  process.env.DEBUG = (process.env.DEBUG || '') + ',indev:run,indev:read,indev:exec,indev:tasks,devfile:*';
+  process.env.DEBUG = (process.env.DEBUG || '') + ',indev:run,indev:read,indev:exec,indev:exec:async,indev:exec:sync,indev:tasks,devfile:*';
 }
 
 var indev = require('../');

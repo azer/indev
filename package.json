@@ -1,7 +1,7 @@
 {
   "name": "indev",
-  "version": "0.2.0",
-  "description": "simple & powerful replacement for Make & Grunt. Aims to let you write and read less, do more.",
+  "version": "1.0.0",
+  "description": "minimalistic task manager",
   "main": "index.js",
   "bin": {
     "indev": "./bin/indev"
@@ -19,7 +19,8 @@
     "glob": "~3.2.1",
     "show-help": "0.0.0",
     "show-version": "0.0.0",
-    "styled": "0.0.1"
+    "styled": "0.0.1",
+    "execSync": "~1.0.1-pre"
   },
   "repository": {
     "url": "git@github.com:azer/indev.git",

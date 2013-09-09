@@ -1,14 +1,19 @@
 Minimalistic task manager.
 
 ```coffee
-task 'run', ->
-    exec "node index"
-    
+browserify = bin 'browserify/cmd'
+uglify = bin 'uglify-js/uglifyjs'
+server = cmd.async "node server"
+
+target 'dist.js', 'entry.js', ->
+    browserify 'entry.js -o dist.js'
+
+target 'dist.min.js', 'dist.js', ->
+    uglify 'dist.js -o dist.min.js'
+
 task 'clean', ->
     cd 'logs'
     rm '-rf', '*.txt'
-    
-task 'server', bin 'serve -p 3001'
 ```
 
 ![](https://dl.dropbox.com/s/imo9jsn9bj0p70a/indev.png)
@@ -63,12 +68,12 @@ task 'hello/world', ->
 
 ## Watching Files
 
-The parameters after a task name considered as files to watch. 
+The parameters after a task name considered as files to watch.
 Following task will watch `run.js` and `lib/` and restart the task on any change:
 
 ```coffee
 task 'start', 'lib', 'run.js', ->
-    exec 'node app'
+    exec.async 'node app'
 ```
 
 The first parameter of the given callback will have the list of changed files;
@@ -91,26 +96,45 @@ target 'dist.js', 'index.js', 'lib', ->
 ## Calling Commands
 
 ```coffee
-serve = cmd "python -m SimpleHTTPServer"
+uglify = cmd "uglifyjs"
 
-task "serve", ->
-  serve()
+task "minify", ->
+  uglify "src.js -o min.js"
+  debug "done"
 ```
 
-### From node_modules/bin
+### Calling Asynchronously
+
+All commands are run synchronously by default. Use `async` method to change it:
 
 ```coffee
-browserify = bin "node-browserify/cli.js" # resolves as node_modules/node-browserify/bin/browserify
+staticServer = cmd.async "python -m SimpleHTTPServer"
+apiServer = cmd.async "node server"
+
+task "api-server", ->
+    apiServer()
+    debug "api server up"
+
+task "serve-static", ->
+    staticServer()
+    debug "static server up"
+```
+
+### Shortcut to node_modules/bin
+
+```coffee
 stylus = bin "stylus" # node_modules/stylus/bin/stylus
+uglify = bin "uglify-js/uglifyjs" # node_modules/uglify-js/bin/uglifyjs
+serve = bin.async "serve" # node_modules/serve/bin/serve
 
 target "dist.js", ->
-    browserify "index.js -o dist.js"
-    
+    uglify "index.js -o dist.js"
+
 target "style.css", ->
     stylus "style.styl"
-    
-task "server", -> bin "serve -p 9090"
 
+target "serve", ->
+    serve()
 ```
 
 ## Defining Multiple Tasks
@@ -119,7 +143,7 @@ task "server", -> bin "serve -p 9090"
 all 'run', 'public/js', 'public/css'
 
 task 'run', './app.js', './lib', ->
-    exec 'node app'
+    exec.async 'node app'
 
 target 'public/js', 'javascripts', ->
     cd 'frontend'
