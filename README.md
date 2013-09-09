@@ -3,7 +3,6 @@ Minimalistic task manager.
 ```coffee
 browserify = bin 'browserify/cmd'
 uglify = bin 'uglify-js/uglifyjs'
-server = cmd.async "node server"
 
 target 'dist.js', 'entry.js', ->
     browserify 'entry.js -o dist.js'
