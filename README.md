@@ -110,6 +110,8 @@ All commands are run synchronously by default. Use `async` method to change it:
 staticServer = cmd.async "python -m SimpleHTTPServer"
 apiServer = cmd.async "node server"
 
+all "api-server", "serve-static"
+
 task "api-server", ->
     apiServer()
     debug "api server up"
@@ -118,6 +120,8 @@ task "serve-static", ->
     staticServer()
     debug "static server up"
 ```
+
+Calling `indev` on this file will start these two servers at the time.
 
 ### Shortcut to node_modules/bin
 
