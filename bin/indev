@@ -1,5 +1,13 @@
 #!/usr/bin/env node
 
+var fs = require("fs");
+var cp = require('child_process');
+
+if (fs.existsSync('node_modules/indev/bin/indev')) {
+  cp.spawn('./node_modules/indev/bin/indev', process.argv.slice(1), { stdio: 'inherit' });
+  return;
+}
+
 var opt = require('optimist');
 
 var argv = opt
