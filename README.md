@@ -77,9 +77,7 @@ task 'start', 'lib', 'run.js', ->
 The first parameter of the given callback will have the list of changed files;
 
 ```coffee
-task 'watch', 'lib/**/*.js', 'run.js', (files, changed) ->
-    debug "All matching files: ", files
-
+task 'watch', 'lib/**/*.js', 'run.js', (files) ->
     files.forEach (file) ->
         debug "#{file} has been changed."
 ```

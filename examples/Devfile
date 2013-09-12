@@ -16,10 +16,7 @@ task 'clean', ->
 
     debug pwd()
 
-task 'watch', '/tmp/test/**/*', (all, changed) ->
-
-    all.forEach (f) ->
-        debug "Monitoring #{f}"
+task 'watch', '/tmp/test/**/*', (changed) ->
 
     changed.forEach (f) ->
         debug "#{f} was changed"
