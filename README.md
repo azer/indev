@@ -11,8 +11,7 @@ target 'dist.min.js', 'dist.js', ->
     uglify 'dist.js -o dist.min.js'
 
 task 'clean', ->
-    cd 'logs'
-    rm '-rf', '*.txt'
+    rm '-rf logs/*.txt'
 ```
 
 ![](https://dl.dropbox.com/s/imo9jsn9bj0p70a/indev.png)
@@ -78,9 +77,11 @@ task 'start', 'lib', 'run.js', ->
 The first parameter of the given callback will have the list of changed files;
 
 ```coffee
-task 'watch', 'lib/**/*.js', 'run.js', (files) ->
+task 'watch', 'lib/**/*.js', 'run.js', (files, changed) ->
+    debug "All matching files: ", files
+
     files.forEach (file) ->
-        debug "#{file} updated."
+        debug "#{file} has been changed."
 ```
 
 ## Defining Targets
