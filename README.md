@@ -57,7 +57,6 @@ task 'hello/world', ->
     mkdir '-p', 'hello/world'
     write 'hello/world/README.txt', 'Hello World!'
 
-    cd 'lib'
     cp 'stuff/*', '../hello/world'
 
     ls './', (file) ->
