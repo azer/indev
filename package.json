@@ -1,6 +1,6 @@
 {
   "name": "indev",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "minimalistic task manager",
   "main": "index.js",
   "bin": {
@@ -20,7 +20,8 @@
     "show-help": "0.0.0",
     "show-version": "0.0.0",
     "styled": "0.0.1",
-    "execSync": "~1.0.1-pre"
+    "execSync": "~1.0.1-pre",
+    "default-debug": "0.0.0"
   },
   "repository": {
     "url": "git@github.com:azer/indev.git",
