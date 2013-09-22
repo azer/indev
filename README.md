@@ -19,12 +19,12 @@ task 'clean', ->
 ## Install
 
 ```bash
-$ npm install -g indev
+$ npm install -g bud
 ```
 
 ## Usage
 
-Create a new [Devfile](https://github.com/azer/indev/blob/master/lib/look-up.js),
+Create a new [Devfile](https://github.com/azer/bud/blob/master/lib/look-up.js),
 and code your tasks in *JavaScript* or *CoffeeScript*.
 
 ## Defining A Task
@@ -45,12 +45,12 @@ task('run', function(){
 To run:
 
 ```bash
-$ indev run
+$ bud run
 ```
 
 ## Shell Commands
 
-[ShellJS](https://github.com/arturadib/shelljs) is [available in Devfiles](https://github.com/azer/indev/blob/master/lib/context.js#L30) globally.
+[ShellJS](https://github.com/arturadib/shelljs) is [available in Devfiles](https://github.com/azer/bud/blob/master/lib/context.js#L30) globally.
 
 ```coffee
 task 'hello/world', ->
@@ -119,7 +119,7 @@ task "serve-static", ->
     debug "static server up"
 ```
 
-Calling `indev` on this file will start these two servers at the time.
+Calling `bud` on this file will start these two servers at the time.
 
 ### Shortcut to node_modules/bin
 
@@ -158,13 +158,13 @@ target 'public/css', 'styles', ->
 To run all tasks:
 
 ```bash
-$ indev
+$ bud
 ```
 
 To run specific tasks;
 
 ```bash
-$ indev public/js public/css
+$ bud public/js public/css
 ```
 
 Define aliases to type less:
@@ -174,11 +174,11 @@ alias 'assets', 'public/js', 'public/css'
 ```
 
 ```bash
-$ indev assets
+$ bud assets
 ```
 
 ### Debugging
 
 ```bash
-$ DEBUG=indev:* indev
+$ DEBUG=bud:* bud
 ```

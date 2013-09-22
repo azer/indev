@@ -6,7 +6,7 @@ var comp   = require('comp'),
     run    = require('./lib/run'),
     tasks  = require('./lib/tasks'),
 
-    indev  = comp(find, read, run);
+    bud    = comp(find, read, run);
 
 module.exports = start;
 
@@ -18,7 +18,7 @@ function start(argv){
 
   if(argv.file) lookup.splice(0, 0, argv.file);
 
-  indev(lookup, function(error){
+  bud(lookup, function(error){
     if(error) throw error;
   });
 

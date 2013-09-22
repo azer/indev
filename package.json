@@ -1,10 +1,10 @@
 {
-  "name": "indev",
+  "name": "bud",
   "version": "1.0.3",
   "description": "minimalistic task manager",
   "main": "index.js",
   "bin": {
-    "indev": "./bin/indev"
+    "bud": "./bin/bud"
   },
   "dependencies": {
     "require-like": "*",
@@ -24,7 +24,7 @@
     "default-debug": "0.0.0"
   },
   "repository": {
-    "url": "git@github.com:azer/indev.git",
+    "url": "git@github.com:azer/bud.git",
     "type": "git"
   },
   "author": "azer",
