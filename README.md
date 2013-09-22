@@ -14,7 +14,7 @@ task 'clean', ->
     rm '-rf logs/*.txt'
 ```
 
-![](https://dl.dropbox.com/s/imo9jsn9bj0p70a/indev.png)
+![](https://i.cloudup.com/j1o26XtmRG.png)
 
 ## Install
 
