@@ -22,6 +22,8 @@ task 'clean', ->
 $ npm install -g bud
 ```
 
+P.S To avoid conflicts in projects depending on different Bud versions, bud seeks [a local copy of itself](https://github.com/azer/bud/blob/master/bin/bud#L6) before running.
+
 ## Usage
 
 Create a new [Devfile](https://github.com/azer/bud/blob/master/lib/look-up.js),
