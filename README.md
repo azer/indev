@@ -1,4 +1,4 @@
-Minimalistic task manager.
+Minimalistic task manager. [Blog Post & Introduction](https://medium.com/p/6a4c74b4bd90)
 
 ```coffee
 browserify = bin 'browserify/cmd'
