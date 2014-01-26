@@ -52,7 +52,7 @@ $ bud run
 
 ## Shell Commands
 
-[ShellJS](https://github.com/arturadib/shelljs) is [available in Devfiles](https://github.com/azer/bud/blob/master/lib/context.js#L30) globally.
+Many shell commands are [available in Devfiles](https://github.com/azer/bud/blob/master/lib/context.js#L30) by default.
 
 ```coffee
 task 'hello/world', ->
@@ -61,8 +61,8 @@ task 'hello/world', ->
 
     cp 'stuff/*', '../hello/world'
 
-    ls './', (file) ->
-        debug "Copied lib/#{file} to hello/world/."
+    files = ls './'
+    debug 'All files: %s', files
 ```
 
 ## Watching Files
@@ -104,7 +104,7 @@ task "minify", ->
 
 ### Calling Asynchronously
 
-All commands are run synchronously by default. Use `async` method to change it:
+All commands are run synchronous by default. Use `async` method to change it:
 
 ```coffee
 staticServer = cmd.async "python -m SimpleHTTPServer"
