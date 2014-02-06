@@ -1,6 +1,6 @@
 {
   "name": "bud",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "minimalistic task manager",
   "main": "index.js",
   "bin": {
@@ -9,7 +9,6 @@
   "dependencies": {
     "require-like": "*",
     "coffee-script": "*",
-    "optimist": "*",
     "iter": "0.0.0",
     "comp": "0.0.1",
     "shelljs": "~0.1.2",
@@ -17,11 +16,10 @@
     "new-partial": "0.0.1",
     "flatten-array": "0.0.1",
     "glob": "~3.2.1",
-    "show-help": "0.0.0",
-    "show-version": "0.0.0",
     "styled": "0.0.1",
     "execSync": "~1.0.1-pre",
-    "default-debug": "0.0.0"
+    "default-debug": "0.0.0",
+    "new-command": "0.0.0"
   },
   "repository": {
     "url": "git@github.com:azer/bud.git",
