@@ -6,25 +6,27 @@ Minimalistic Task Manager
 var task = require('bud')
 var rmrf = require('rimraf')
 var concat = require('concat')
+var browserify = require('browserify')
 
 var build = task
 
 build('dist.js', build.watch('**/*.js').ignore('node_modules', 'dist.js'), function (b) {
-  b.exec('browserify entry.js -o dist.js')
-     .then('uglify dist.js -o dist.js')
-     .then('scp dist.js host:~/site/.')
-     .then(b.done);
+  browserify('entry.js').bundle().pipe(b.write('dist.js'))
 })
 
 build('dist.css', build.watch('**/*.css').ignore('dist.css'), function (b) {
   concat(b.files, 'dist.css', b.done)
 })
 
-task('default', task.once('dist.js', 'dist.css'))
+task('publish', function (t) {
+  t.exec('python -m SimpleHTTPServer').then(t.end)
+})
 
 task('clean', function (t) {
   rmrf('dist.js', t.done)
 })
+
+task('default', task.once('dist.js', 'dist.css'))
 ```
 
 ## Install
