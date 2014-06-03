@@ -19,7 +19,7 @@ build('dist.css', build.watch('**/*.css').ignore('dist.css'), function (b) {
 })
 
 task('publish', function (t) {
-  t.exec('python -m SimpleHTTPServer').then(t.end)
+  t.exec('python -m SimpleHTTPServer').then(t.done)
 })
 
 task('clean', function (t) {
