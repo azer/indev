@@ -11,7 +11,7 @@ var browserify = require('browserify')
 var build = task
 
 build('dist.js', build.watch('**/*.js').ignore('node_modules', 'dist.js'), function (b) {
-  browserify('entry.js').bundle().pipe(b.write('dist.js'))
+  browserify('entry.js').bundle().pipe(build.write('dist.js'))
 })
 
 build('dist.css', build.watch('**/*.css').ignore('dist.css'), function (b) {
