@@ -4,7 +4,7 @@ Minimalistic Task Manager
 
 ```js
 var task = require('bud')
-var rmrf = require('rimraf')
+var rmrf = require('rimraf-glob')
 var concat = require('concat')
 var browserify = require('browserify')
 
@@ -23,7 +23,7 @@ task('publish', function (t) {
 })
 
 task('clean', function (t) {
-  rmrf('dist.js', t.done)
+  rmrf('dist.*', t.done)
 })
 
 task('default', task.once('dist.js', 'dist.css'))
