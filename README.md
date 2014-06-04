@@ -103,15 +103,56 @@ This will restart the task by killing any actively running processes.
 **once:** specifies the other tasks to be completed before running the defining task.
 **files:** alias for the `watch` method.
 
+### Dependent Tasks
+
+You can define tasks that requires to complete other tasks first using the `.once` method:
+
+```js
+var task = require('bud')
+
+task('foo', function (t) {
+  t.end()
+})
+
+task('bar', function (t) {
+  t.end()
+})
+
+task('qux', t.once('foo', 'bar'), function (t) {
+  t.end()
+})
+```
+
 ### Local Bins
 
 Bud automatically resolves and prefers local binaries for you. For example, following task will be running './node_modules/browserify/bin/cmd' instead of global `browserify`:
 
 ```js
+var build = require('bud')
+
 build('dist.js', function (b) {
   b.exec('browserify entry.js -o dist.js')
    .then(b.done);
 })
+```
+
+### Parameters
+
+You can define tasks that takes parameters from command-line. For example, let's say we wanna have a task that installs our app in remote machine with Docker:
+
+```js
+var task = require('bud')
+var setupDocker = require('setup-docker')
+
+task('install', function (t) {
+  setupDocker({ name: 'your-app', ssh: t.params.remote, dockerfile: './Dockerfile', port: '80:8080' }, t.done);
+})
+```
+
+And here is how you can call this task from command-line:
+
+```js
+$ node do install remote=azer@chessapp.com
 ```
 
 ### Command-line Usage
