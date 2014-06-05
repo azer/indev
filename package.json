@@ -1,6 +1,6 @@
 {
   "name": "bud",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Minimalistic Task Manager",
   "main": "index.js",
   "scripts": {
