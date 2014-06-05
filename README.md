@@ -14,13 +14,13 @@ task('clean', function (t) {
 
 Examples:
 
-* [Concat Files]()
-* [Browserify]()
-* [rm -rf]()
-* [Running Remote Commands]()
-* [Starting A Static Server]()
-* [Building JS and CSS and Sending To A Remote Machine]()
-* [Default Tasks]()
+* [Concat Files](#concat-files)
+* [Browserify](#browserify)
+* [rm -rf](#rm--rf)
+* [Running Remote Commands](#running-remote-commands)
+* [Starting A Static Server](#starting-a-static-server)
+* [Building JS and CSS and Sending To A Remote Machine](#building-js-and-css-and-sending-to-a-remote-machine)
+* [Default Tasks](#default-tasks)
 
 ## Install
 
@@ -32,6 +32,8 @@ $ npm install bud
 
 The old version is completely gone, I've rewritten Bud during my last flight.
 Read the guide below for the new documentation, or jump to the [old documentation](https://medium.com/@azerbike/introducing-bud-6a4c74b4bd90).
+
+## Why not Make, Gulp or Grunt?
 
 ## Getting Started
 
@@ -176,27 +178,6 @@ $ node [filename] -h # or --help
 
 ## Examples
 
-### rm -rf
-
-Using a library:
-
-```js
-var task = require('bud')
-var rmrf = require('rimraf-glob')
-
-task('clean', function (t) {
-  rmrf('dist.*', t.done)
-})
-```
-
-Calling the `rm` command:
-
-```js
-task('clean', function (t) {
-  t.exec('rm -rf dist.*').then(t.done)
-})
-```
-
 ### Concat Files
 
 ```js
@@ -226,6 +207,27 @@ Calling the command:
 ```js
 build('dist.js', build.watch('**/*.js').ignore('node_modules', 'dist.js'), function (b) {
   b.exec('browserify entry.js -o dist.js').then(b.done)
+})
+```
+
+### rm -rf
+
+Using a library:
+
+```js
+var task = require('bud')
+var rmrf = require('rimraf-glob')
+
+task('clean', function (t) {
+  rmrf('dist.*', t.done)
+})
+```
+
+Calling the `rm` command:
+
+```js
+task('clean', function (t) {
+  t.exec('rm -rf dist.*').then(t.done)
 })
 ```
 
