@@ -1,3 +1,6 @@
+a
+b
+c
 var task = require('../../')
 var concat = require('concat')
 var rmrf = require("rimraf-glob")

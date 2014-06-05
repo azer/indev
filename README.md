@@ -12,11 +12,11 @@ task('clean', function (t) {
 })
 ```
 
-See it in action:
+Examples:
 
-* [rm -rf]()
 * [Concat Files]()
 * [Browserify]()
+* [rm -rf]()
 * [Running Remote Commands]()
 * [Starting A Static Server]()
 * [Building JS and CSS and Sending To A Remote Machine]()
@@ -47,22 +47,33 @@ And create your first task;
 var task = require('bud')
 
 task('say hello', function (t) {
-  t.exec('echo "hello!"')
-    .then('date "+%d %h %H:%M"')
-    .then(t.done)
+  t.exec('echo "hello!"').then(t.done)
 })
 ```
 
-The task above just says hello and outputs today's date and time by spawning child processes serially. To call this task in your command-line is pretty simple, all you do is calling the script you've created;
+The task above just says hello by spawning child process. To call this task in your command-line is pretty simple, all you do is calling the script you've created. In this example, I saved my tasks as `do.js` so I can simply call `node do`:
 
 ```bash
 $ node do say-hello
 say-hello  Running...
 say-hello  (3951:echo "hello!")  "hello!"
-say-hello  (3952:date '+...%H:%M') 03 Jun 02:11
 ```
 
-You can run multiple tasks at once, define a `default` task to run when no task name is given.
+Tasks can take parameters from command-line:
+
+```js
+task('say hello', function (t) {
+  t.exec('echo "hello {name}!"', t.params).then(t.done)
+})
+```
+
+Passing parameters is similar to Makefiles:
+
+```bash
+$ node do say-hello name=azer
+say-hello  Running...
+say-hello  (3951:echo "hello!")  "hello azer!"
+```
 
 ### Watching For Changes
 
@@ -71,14 +82,15 @@ To watch files, pass extra options when you create a new task;
 ```js
 var task = require('bud')
 
-task('say hello', task.watch('*.js'), function (t) {
-  t.exec('echo "hello!"')
-    .then('date "+%d %h %H:%M"')
-    .then(t.done)
+task('say hello', task.files('*.js'), function (t) {
+  t.files
+  // => ['foo.js', 'bar.js' ...]
+
+  t.exec('echo "hello!"').then(t.done)
 })
 ```
 
-And pass `-w` or `--watch` parameter to enable file watching:
+Pass `-w` or `--watch` parameter to enable file watching:
 
 ```js
 $ node do say-hello -w
@@ -292,9 +304,3 @@ task('default', task.once('dist.js', 'dist.css'))
 ## Missing Anything?
 
 File an issue, pull requests are always welcome!
-
-## In Progress
-
-* fix cli args passed to spawn
-* exec string formatting
-* task.stdout, task.stderr
