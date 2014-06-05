@@ -33,8 +33,6 @@ $ npm install bud
 The old version is completely gone, I've rewritten Bud during my last flight.
 Read the guide below for the new documentation, or jump to the [old documentation](https://medium.com/@azerbike/introducing-bud-6a4c74b4bd90).
 
-## Why not Make, Gulp or Grunt?
-
 ## Getting Started
 
 Create a regular JavaScript (or Coffee, whatever) and require bud as "task" or "build":
