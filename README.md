@@ -17,10 +17,10 @@ Examples:
 * [Concat Files](#concat-files)
 * [Browserify](#browserify)
 * [rm -rf](#rm--rf)
+* [Default Tasks](#default-tasks)
 * [Running Remote Commands](#running-remote-commands)
 * [Starting A Static Server](#starting-a-static-server)
 * [Building JS and CSS and Sending To A Remote Machine](#building-js-and-css-and-sending-to-a-remote-machine)
-* [Default Tasks](#default-tasks)
 
 ## Install
 
