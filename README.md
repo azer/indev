@@ -301,6 +301,26 @@ You can define a default task that will run when no task name is given, as a dep
 task('default', task.once('dist.js', 'dist.css'))
 ```
 
+## Command-line Reference
+
+```
+    USAGE
+
+        bud [filename] [options]
+
+    OPTIONS
+
+        -l    --list        List all available tasks.
+        -w    --watch       Watch for changes and restart the task.
+
+        -e    --verbose     Be talkative.
+        -s    --silent      Mute.
+
+        -v    --version     Show version and exit.
+        -h    --help        Show help and exit.
+```
+
 ## Missing Anything?
 
 File an issue, pull requests are always welcome!
+
