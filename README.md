@@ -110,7 +110,7 @@ This will restart the task by killing any actively running processes.
 
 ### Dependent Tasks
 
-You can define tasks that requires to complete other tasks *parelelly* first using the `.once` method:
+You can define tasks that requires to complete other tasks paralelly first using the `.once` method:
 
 ```js
 var task = require('bud')
