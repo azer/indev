@@ -77,7 +77,7 @@ say-hello  (3951:echo "hello!")  "hello azer!"
 
 ### Watching For Changes
 
-To watch files, pass extra options when you create a new task;
+To watch files, choose the files to watch per task;
 
 ```js
 var task = require('bud')
