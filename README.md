@@ -1,8 +1,11 @@
 ## bud
 
-Minimalistic Task Manager
+Minimalistic Task Manager. It does not have a plugin system.
 
 ```js
+var concat = require('concat')
+var rmrf = require('rm-rf')
+
 build('dist.css', build.watch('**/*.css').ignore('dist.css'), function (b) {
   concat(b.files, 'dist.css', b.done)
 })
