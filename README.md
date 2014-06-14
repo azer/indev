@@ -5,6 +5,8 @@ Minimalistic Task Manager
 ```js
 var concat = require('concat')
 var rmrf = require('rm-rf')
+var task = require('bud')
+var build = task
 
 build('dist.css', build.watch('**/*.css').ignore('dist.css'), function (b) {
   concat(b.files, 'dist.css', b.done)
