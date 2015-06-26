@@ -206,6 +206,29 @@ var browserify = require('bud-browserify')
 build('dist.js', build.watch('*.js').ignore('dist.js'), browserify('entry.js', 'dist.js'))
 ```
 
+## Auto-generate
+
+Bud command-line tool has an option to auto-generate bud files. Here is an example usage;
+
+![](https://cldup.com/V6l-edrqt9.png)
+
+Above example will output following code into `do.js`:
+
+```js
+var task = require("bud");
+var build = task;
+var browserify = require("bud-browserify");
+
+task("default", task.once("dist/build.js"));
+
+task("dist/build.js", build.watch("**/*.js").ignore("dist"), browserify("index.js", "dist/build.js"));
+```
+
+You can choose as much as plugins you'd like to have. Here is a longer example command;
+
+```bash
+$ bud -g do.js dist/build.js=bud-browserify dist/build.css=bud-concat dist/index.html=bud-generate-index
+```
 
 ## Examples
 
@@ -332,30 +355,6 @@ You can define a default task that will run when no task name is given, as a dep
 
 ```js
 task('default', task.once('dist.js', 'dist.css'))
-```
-
-## Auto-generating Bud files
-
-Bud command-line tool has an option to auto-generate bud files. Here is an example usage;
-
-![](https://cldup.com/V6l-edrqt9.png)
-
-Above example will output following code into `do.js`:
-
-```js
-var task = require("bud");
-var build = task;
-var browserify = require("bud-browserify");
-
-task("default", task.once("dist/build.js"));
-
-task("dist/build.js", build.watch("**/*.js").ignore("dist"), browserify("index.js", "dist/build.js"));
-```
-
-You can choose as much as plugins you'd like to have. Here is a longer example command;
-
-```bash
-$ bud -g do.js dist/build.js=bud-browserify dist/build.css=bud-concat dist/index.html=bud-generate-index
 ```
 
 ## Command-line Reference
