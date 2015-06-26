@@ -1,6 +1,6 @@
 {
   "name": "bud",
-  "version": "1.0.4",
+  "version": "2.0.0",
   "description": "Minimalistic Task Manager",
   "main": "index.js",
   "scripts": {
@@ -25,14 +25,16 @@
     "minimatch": "0.2.14",
     "new-command": "^1.0.2",
     "new-struct": "^0.1.1",
-    "parallel-loop": "0.0.1",
+    "parallel-loop": "0.0.3",
     "prettify-error": "^0.1.1",
+    "prompt-input": "0.0.1",
     "pubsub": "^1.0.2",
     "read-json": "0.0.0",
     "right-pad": "0.0.0",
     "serial-loop": "0.0.1",
     "style-format": "0.0.0",
-    "through": "^2.3.4"
+    "through": "^2.3.4",
+    "variable-name": "0.0.1"
   },
   "devDependencies": {
     "prova": "^1.10.0",

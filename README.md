@@ -34,11 +34,6 @@ Examples:
 $ npm install bud
 ```
 
-## What's New?
-
-The old version is completely gone, I've rewritten Bud during my last flight.
-Read the guide below for the new documentation, or jump to the [old documentation](https://medium.com/@azerbike/introducing-bud-6a4c74b4bd90).
-
 ## Getting Started
 
 Create a regular JavaScript (or Coffee, whatever) and require bud as "task" or "build":
@@ -307,6 +302,37 @@ You can define a default task that will run when no task name is given, as a dep
 task('default', task.once('dist.js', 'dist.css'))
 ```
 
+### Plugins
+
+Bud now supports plugins to save your time. Each plugin is separate NPM package that exports a function. Here is an example;
+
+```js
+var browserify = require('browserify')
+var fs = require('fs')
+
+plugin.params = [ // This will be used for command-line UI to auto-generate bud files
+  'Entry', // Or; { name: 'Entry', description: 'Entry file of the NPM project that will be browserified.' },
+  'Destination'  // Or; { name: 'Destination file', description: 'Path to the file to be written for output.' }
+];
+
+module.exports = plugin;
+
+function plugin (entry, dest) {
+  return function (b) {
+    browserify(entry).bundle().on('error', b.error).on('end', b.done).pipe(fs.createWriteStream(dest))
+  }
+}
+```
+
+And this is how would you use it in your bud file:
+
+```js
+var build = require('bud')
+var browserify = require('bud-browserify')
+
+build('dist.js', build.watch('*.js').ignore('dist.js'), browserify('entry.js', 'dist.js'))
+```
+
 ## Command-line Reference
 
 ```
@@ -324,6 +350,15 @@ task('default', task.once('dist.js', 'dist.css'))
 
         -v    --version     Show version and exit.
         -h    --help        Show help and exit.
+```
+
+
+### Auto-generate Bud files
+
+You can auto-generate bud files on command-line:
+
+```
+$ bud -g do.js dist/build.js=bud-browserify dist/build.css=bud-concat dist/index.html=bud-generate-index
 ```
 
 ## Missing Anything?

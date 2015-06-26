@@ -4,11 +4,12 @@
 
     OPTIONS
 
-        -l    --list        List all available tasks.
-        -w    --watch       Watch for changes and restart the task.
+        -l    --list         List all available tasks.
+        -w    --watch        Watch for changes and restart the task.
+        -g    --generate     Generate a new Bud file with passed plugins and task names and build targets.
 
-        -e    --verbose     Be talkative.
-        -s    --silent      Mute.
+        -e    --verbose      Be talkative.
+        -s    --silent       Mute.
 
-        -v    --version     Show version and exit.
-        -h    --help        Show help and exit.
+        -v    --version      Show version and exit.
+        -h    --help         Show help and exit.
