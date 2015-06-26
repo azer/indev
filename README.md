@@ -175,6 +175,38 @@ To see bud help:
 $ node [filename] -h # or --help
 ```
 
+## Plugins
+
+Bud now supports plugins to save your time. Each plugin is separate NPM package that exports a function. Here is an example;
+
+```js
+var browserify = require('browserify')
+var fs = require('fs')
+
+plugin.params = [ // This will be used for command-line UI to auto-generate bud files
+  'Entry', // Or; { name: 'Entry', description: 'Entry file of the NPM project that will be browserified.' },
+  'Destination'  // Or; { name: 'Destination file', description: 'Path to the file to be written for output.' }
+];
+
+module.exports = plugin;
+
+function plugin (entry, dest) {
+  return function (b) {
+    browserify(entry).bundle().on('error', b.error).on('end', b.done).pipe(fs.createWriteStream(dest))
+  }
+}
+```
+
+And this is how would you use it in your bud file:
+
+```js
+var build = require('bud')
+var browserify = require('bud-browserify')
+
+build('dist.js', build.watch('*.js').ignore('dist.js'), browserify('entry.js', 'dist.js'))
+```
+
+
 ## Examples
 
 ### Concat Files
@@ -302,35 +334,28 @@ You can define a default task that will run when no task name is given, as a dep
 task('default', task.once('dist.js', 'dist.css'))
 ```
 
-### Plugins
+## Auto-generating Bud files
 
-Bud now supports plugins to save your time. Each plugin is separate NPM package that exports a function. Here is an example;
+Bud command-line tool has an option to auto-generate bud files. Here is an example usage;
+
+![](https://cldup.com/V6l-edrqt9.png)
+
+Above example will output following code into `do.js`:
 
 ```js
-var browserify = require('browserify')
-var fs = require('fs')
+var task = require("bud");
+var build = task;
+var browserify = require("bud-browserify");
 
-plugin.params = [ // This will be used for command-line UI to auto-generate bud files
-  'Entry', // Or; { name: 'Entry', description: 'Entry file of the NPM project that will be browserified.' },
-  'Destination'  // Or; { name: 'Destination file', description: 'Path to the file to be written for output.' }
-];
+task("default", task.once("dist/build.js"));
 
-module.exports = plugin;
-
-function plugin (entry, dest) {
-  return function (b) {
-    browserify(entry).bundle().on('error', b.error).on('end', b.done).pipe(fs.createWriteStream(dest))
-  }
-}
+task("dist/build.js", build.watch("**/*.js").ignore("dist"), browserify("index.js", "dist/build.js"));
 ```
 
-And this is how would you use it in your bud file:
+You can choose as much as plugins you'd like to have. Here is a longer example command;
 
-```js
-var build = require('bud')
-var browserify = require('bud-browserify')
-
-build('dist.js', build.watch('*.js').ignore('dist.js'), browserify('entry.js', 'dist.js'))
+```bash
+$ bud -g do.js dist/build.js=bud-browserify dist/build.css=bud-concat dist/index.html=bud-generate-index
 ```
 
 ## Command-line Reference
@@ -353,13 +378,6 @@ build('dist.js', build.watch('*.js').ignore('dist.js'), browserify('entry.js', '
 ```
 
 
-### Auto-generate Bud files
-
-You can auto-generate bud files on command-line:
-
-```
-$ bud -g do.js dist/build.js=bud-browserify dist/build.css=bud-concat dist/index.html=bud-generate-index
-```
 
 ## Missing Anything?
 
