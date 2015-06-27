@@ -104,10 +104,12 @@ This will restart the task by killing any actively running processes.
 * ignore
 * once
 * files
+* when
 
 **ignore:** takes any filenames or glob patterns to specify the files to ignore.
 **once:** specifies the other tasks to be completed before running the defining task.
 **files:** alias for the `watch` method.
+**when:** lets a task run when specified other tasks run.
 
 ### Dependent Tasks
 
