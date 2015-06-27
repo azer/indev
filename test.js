@@ -147,3 +147,10 @@ test('a task may subscribe to other tasks', function (assert) {
   t1.run();
   t2.run();
 });
+
+test('accessing task map from task instance', function (assert) {
+  assert.plan(1);
+  task('yoo', function (t) {
+    assert.equal(t, t.tasks.get('yoo'));
+  }).run();
+});
