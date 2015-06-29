@@ -52,6 +52,24 @@ test('a task with options', function (assert) {
   }).run();
 });
 
+test('watching', function (assert) {
+  assert.plan(2);
+
+  var watcher;
+  var t = task('watch out', task.watch('/tmp/bud-watch-out'), function () {
+    assert.ok(true);
+    watcher.close();
+  });
+
+  t.watch(function (error, _watcher) {
+    watcher = _watcher;
+    assert.error(error);
+    setTimeout(function () {
+      require('fs').writeFile('/tmp/bud-watch-out', 'yooo');
+    }, 250);
+  });
+});
+
 test('running multiple tasks paralelly', function (assert) {
   assert.plan(21);
 
